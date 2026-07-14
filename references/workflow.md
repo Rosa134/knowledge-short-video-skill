@@ -53,6 +53,8 @@ The script must be speakable:
 
 Generate or import audio before final storyboard timing. `timing.json` is the master clock.
 
+When reusing audio, classify each file as `narration_only`, `bgm_only`, `mixed_master`, or `unknown` before mixing. Do not add BGM over an already mixed master. If the BGM is shorter than the video, create a full-length seamless music bed instead of relying on a raw loop.
+
 ### Render Gate
 
 Before rendering, confirm generated assets are role-separated:
@@ -61,6 +63,8 @@ Before rendering, confirm generated assets are role-separated:
 - background plates contain no readable text,
 - component images are isolated and layerable,
 - Chinese text, UI, subtitles, charts, and citations are rendered in Remotion.
+
+For premium runs, confirm the image2 asset plan exists and has been used: at least one style/first-frame reference, background plate, and several isolated or metaphor elements unless the user explicitly requested code-only visuals.
 
 Before rendering, state renderer, aspect ratio, expected duration, TTS backend, subtitle method, output path, and skipped checks.
 
@@ -72,6 +76,8 @@ Check stage cache status for expensive upstream work:
 python scripts/stage_checkpoint.py status videos/video-id --stage visual_render --inputs storyboard.json remotion assets/manifest.json
 ```
 
+Before final render, define the premium quality floor in the storyboard or report: reference used, visual tokens, signature motion, and what must improve over the baseline. If the new render is only safer but less polished, stop and revise.
+
 ### Delivery Gate
 
 Before saying the video is done, write `report.md` and run QA from `qa.md`. Use `scripts/media_qa.py` for rendered MP4s when practical:
@@ -79,6 +85,8 @@ Before saying the video is done, write `report.md` and run QA from `qa.md`. Use 
 ```bash
 python scripts/media_qa.py videos/video-id/renders/final.mp4 --report videos/video-id/qa/final.qa.json --contact-sheet videos/video-id/qa/contact-sheet.jpg
 ```
+
+If a previous version or style reference exists, include a baseline regression note: what got better, what got worse, and what was fixed before delivery.
 
 ## Resume Rules
 

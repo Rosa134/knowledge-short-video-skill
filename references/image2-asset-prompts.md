@@ -2,6 +2,12 @@
 
 Use image generation to create controlled visual ingredients, not final text-heavy layouts. Chinese titles, UI labels, subtitles, charts, references, progress bars, and fine copy must be rebuilt in Remotion.
 
+For premium explainers, image2/gpt-image-2 is expected to contribute real visual assets, not just an optional mood board. Use it to create background plates, first-frame direction, texture, isolated decorative or metaphor elements, device shells, icons, cursors, chapter inserts, and other static ingredients that raise production value. Remotion should then assemble, animate, and typeset those ingredients.
+
+Do not deliver a polished run that uses only flat CSS cards unless the design quality still meets the accepted premium baseline.
+
+When image2 outputs should become foreground elements rather than full plates, use `$image2-asset-pipeline` to clean alpha, remove baked white/checkerboard backgrounds, vectorize suitable elements, and record the processing method. A generated element with a visible rectangular canvas is not a finished layered asset.
+
 ## Asset Types
 
 | Asset Type | Use | Must Avoid |
@@ -9,8 +15,19 @@ Use image generation to create controlled visual ingredients, not final text-hea
 | `style_frame` | first-frame direction, mood, layout reference | small Chinese text, final subtitles, dense UI labels |
 | `background_plate` | paper, grid, soft texture, subtle spatial depth | busy gradients, random symbols, high contrast behind text |
 | `metaphor_illustration` | conceptual static frame or chapter opener | explaining the whole scene with generated Chinese copy |
-| `isolated_element` | icon, object, character, sticker, cursor, device shell | shadows/crops that prevent clean layering |
+| `isolated_element` | icon, object, character, sticker, cursor, device shell | shadows/crops that prevent clean layering, chroma colors close to foreground palette |
 | `transition_plate` | short static texture used under wipes or section changes | replacing semantic animation |
+
+## Minimum Asset Set For Premium Runs
+
+Unless the user explicitly asks for code-only visuals, prepare at least:
+
+- one `style_frame` or first-frame reference for the overall look,
+- one or more `background_plate` images for paper/grid/texture/spatial depth,
+- 3-8 `isolated_element` or `metaphor_illustration` assets for scene-specific polish,
+- one `transition_plate` or decorative texture if the video has multiple chapters.
+
+For RAG-style explainers, good image2 candidates include paper texture, abstract retrieval core surface, document card backing, cursor/citation marker, search light sweep, chapter divider, and subtle evidence-map decorations. Keep all Chinese copy and scores code-rendered.
 
 ## Prompt Contract
 
@@ -22,6 +39,14 @@ Every generated asset prompt should declare:
 - visual style and palette tokens
 - composition role in the Remotion scene
 - negative constraints
+
+For isolated elements, prefer true transparent output. If transparency is uncertain, request a flat chroma background over a checkerboard preview; checkerboards are pixels unless the file has real alpha.
+
+Choose chroma color against the foreground palette:
+
+- For teal/green/cyan product-design assets, prefer pure magenta `#ff00ff`.
+- Use green `#00ff00` only when the object has no green, teal, cyan, green glow, or green shadow.
+- If the element will be SVG-like or path-animated, prompt for flat vector-style, crisp edges, no shadows, no glow, no gradients, and no material texture.
 
 ## Default Prompt Blocks
 
@@ -50,9 +75,9 @@ No readable text, no icons competing with foreground, no strong vignette, no dar
 ```text
 Generate one isolated visual component for layering in Remotion.
 Object: {object}
-Style: clean editorial product-sketch, restrained teal/ink accent, crisp edges, light shadow only if needed.
-Canvas: transparent PNG preferred, centered, enough padding, no text.
-Negative: no labels, no background scene, no watermark, no cropped edges, no fake UI text.
+Style: clean editorial product-sketch or flat vector-style, restrained palette, crisp edges.
+Canvas: transparent PNG preferred. If not supported, use pure chroma background selected against the object palette, centered, 12-20% padding, no text.
+Negative: no labels, no background scene, no watermark, no cropped edges, no fake UI text, no checkerboard preview, no soft shadow touching the background, no chroma color inside the object.
 ```
 
 ### Ian Xiaohei Metaphor Illustration
@@ -90,6 +115,10 @@ For every generated image, record in `assets/manifest.json`:
 ## Review Rules
 
 - Reject generated images with fake Chinese, unreadable tiny text, watermarks, overly familiar stock metaphors, or cluttered "AI dashboard" visuals.
+- Reject foreground element PNGs that still show a white rectangle, gray box, or checkerboard transparency preview after compositing.
+- Reject generated cutout sources whose foreground palette is too close to the background/chroma color; regenerate with a different chroma or flatter style.
+- Reject processed foreground assets when `$image2-asset-pipeline` reports non-empty `risk_notes`, unless the report explicitly documents a human-approved decorative-only use.
 - Reject images that force the subtitle lane or main title into conflict.
 - If image2 creates a good concept but bad text, keep the image only as a textless reference and rebuild the text in React.
 - For first frames, compare the rendered Remotion first frame against the generated style frame. The final frame may borrow mood and composition but must have stable typography and controlled layers.
+- Reject a "premium" render that ignores the generated asset plan and falls back to plain CSS boxes without an intentional art direction.

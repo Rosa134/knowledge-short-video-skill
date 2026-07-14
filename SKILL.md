@@ -18,6 +18,9 @@ Create knowledge-first short videos for product methodology and AI concept expla
 - Reserve a subtitle lane and keep all core content inside platform safe areas.
 - Record asset source and license in `assets/manifest.json`; do not silently use unlicensed media.
 - Use image generation as a style-frame and asset generator, not as the uncontrolled renderer for Chinese text, UI, charts, subtitles, or final explainers.
+- For polished runs, use image2/gpt-image-2 for background plates, first-frame direction, texture, isolated visual elements, metaphor inserts, and decorative assets; rebuild all semantic text and UI logic in Remotion.
+- When an image2 asset must become a transparent layered element, SVG component, or path-animated motif, use `$image2-asset-pipeline` before placing it into Remotion and record the report in `assets/manifest.json`.
+- Treat premium visual taste as a hard success criterion. A video that is readable but visually flat, template-like, or less polished than the accepted baseline is not done.
 - Finish with QA: brief validation, duration estimate, checkpoint-aware stage review, `ffprobe` when a video exists, subtitle/content overlap check, target-frame inspection at caption-active moments, and representative frame inspection.
 
 ## Use Cases
@@ -104,6 +107,8 @@ Create `assets/image2-prompts.md` before generating images. Separate:
 - isolated decorative elements
 - metaphor illustrations
 - UI/icon components that will be redrawn or layered in Remotion
+
+If generated elements arrive with baked white/checkerboard backgrounds, need alpha cleanup, or should be animated as SVG paths/groups, read and use `$image2-asset-pipeline`. Keep generated raster plates for texture/background roles, but do not paste boxed element PNGs into the final render when a transparent PNG or SVG component is needed. Reject foreground assets with non-empty `risk_notes` unless they are explicitly documented as decorative-only and visually verified on light/dark QA composites.
 
 When using the Ian Xiaohei illustration style, use it for conceptual static frames or texture-like metaphor illustrations, then rebuild titles, UI copy, captions, and progress with HTML/React components.
 

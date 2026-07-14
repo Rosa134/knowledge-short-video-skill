@@ -58,7 +58,12 @@ Still images can receive mild Ken Burns treatment only when they are B-roll or t
 
 ## Premium Feel Rules
 
+- Premium quality has priority over merely passing layout safety. A safe but stiff render should be revised before delivery.
 - Fewer bigger decisions beat many small generic effects.
 - Prefer structured whitespace, strong type hierarchy, and consistent tokens over glow-heavy "tech" decoration.
 - Keep color accents deliberate. Avoid default blue-purple gradients, random neon particles, glassmorphism everywhere, fake holograms, and stock SaaS blobs.
 - Make every decorative layer earn its place: grain, paper texture, grid, or light sweep must support the scene mood and remain behind content.
+- Do not let safety checks degrade the design into a low-density whiteboard. Empty space is good only when it increases focus; if it removes hierarchy, visual tension, or semantic relationships, the scene is under-designed.
+- If a previous version has stronger composition, use it as a quality floor. Rebuild with safer layout and cleaner motion, but preserve or improve its density, rhythm, and component relationships.
+- Prefer one strong diagram per scene over several weak placeholders. Line geometry, spacing, shadows, and card scale should look intentionally designed at full resolution, not just non-overlapping.
+- Use advanced motion sparingly but decisively: staggered card choreography, path drawing, FLIP-like reordering, masked text reveals, material shadow changes, and focus transitions should map to meaning rather than decoration.
