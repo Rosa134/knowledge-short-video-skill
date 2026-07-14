@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Knowledge short video asset manifest",
+  "type": "object",
+  "required": ["assets"],
+  "properties": {
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "role", "source", "license", "used_in"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "role": { "enum": ["primary", "secondary", "support", "decorative", "audio", "bgm"] },
+          "source": { "type": "string" },
+          "license": { "type": "string" },
+          "path": { "type": "string" },
+          "used_in": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

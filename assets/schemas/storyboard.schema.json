@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Knowledge short video storyboard",
+  "type": "object",
+  "required": ["video", "scenes"],
+  "properties": {
+    "video": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "platform": { "type": "string" },
+        "resolution": { "type": "string" },
+        "fps": { "type": "number" }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "start", "duration", "beat", "subtitle", "primary", "visual"],
+        "properties": {
+          "id": { "type": "string" },
+          "start": { "type": "number" },
+          "duration": { "type": "number" },
+          "beat": { "type": "string" },
+          "subtitle": { "type": "string" },
+          "primary": { "type": "string" },
+          "visual": { "type": "object" },
+          "fact_refs": { "type": "array", "items": { "type": "string" } },
+          "transition": { "type": "string" }
+        }
+      }
+    }
+  }
+}

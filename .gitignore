@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+videos/
+renders/
+qa/
+*.mp4
+*.m4a
+*.wav
+*.mp3
+*.log

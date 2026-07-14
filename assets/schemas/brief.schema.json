@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Knowledge short video brief",
+  "type": "object",
+  "required": ["id", "type", "platform", "language", "duration_s", "audience", "source"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "enum": ["pm_method", "ai_intro", "product_intro"] },
+    "platform": { "type": "string" },
+    "language": { "type": "string" },
+    "duration_s": { "type": "number", "exclusiveMinimum": 0 },
+    "audience": { "type": "string" },
+    "source": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "enum": ["topic", "document", "url", "readme", "outline", "script"] },
+        "text": { "type": "string" },
+        "path": { "type": "string" },
+        "url": { "type": "string" }
+      }
+    },
+    "style": { "type": "object" }
+  }
+}

@@ -1,0 +1,8 @@
+interface:
+  display_name: "Knowledge Short Video"
+  short_description: "PM and AI explainer short-video workflow"
+  brand_color: "#2563EB"
+  default_prompt: "Use $knowledge-short-video to turn my product management or AI concept brief into a fact-checked narrated short video plan."
+
+policy:
+  allow_implicit_invocation: true
