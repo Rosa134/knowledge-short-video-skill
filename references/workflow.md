@@ -17,9 +17,11 @@ For iterative work, maintain `pipeline-manifest.json` and `.ksv/checkpoint.json`
 | Mode | Use When | Renderer |
 |---|---|---|
 | `remotion-template` | Default for polished PM, AI, and product explainers | Remotion |
-| `html-prototype` | Fast visual prototype or animated HTML cards | HyperFrames-style HTML |
+| `html-prototype` | Fast visual prototype, animated HTML cards, kinetic titles, or GSAP motion studies | HyperFrames-style HTML |
 | `document-explainer` | Input is PDF, Markdown, URL, README, or article | Remotion after fact extraction |
 | `quick-social` | Short platform variant from an existing script | Remotion or FFmpeg |
+| `footage-edit` | Real footage, talking-head cleanup, long-to-short clipping, or editable social draft | FFmpeg plus CapCut/JianYing handoff when available |
+| `ai-video-asset` | Short generated b-roll, concept shot, or first-frame/style reference | image2 or AI video model as asset generator only |
 
 ## Gates
 
@@ -61,6 +63,8 @@ Before rendering, confirm generated assets are role-separated:
 - Chinese text, UI, subtitles, charts, and citations are rendered in Remotion.
 
 Before rendering, state renderer, aspect ratio, expected duration, TTS backend, subtitle method, output path, and skipped checks.
+
+Read `tool-routing.md` before choosing a non-default renderer or handing work to HyperFrames, GSAP, CapCut/JianYing automation, Sora-style generation, FFmpeg-only editing, or image2.
 
 Check stage cache status for expensive upstream work:
 

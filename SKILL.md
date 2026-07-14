@@ -93,7 +93,7 @@ Create `storyboard.json` using actual audio duration from `timing.json`. Every s
 - fact refs
 - transition
 
-Read `references/visual-system.md`, `references/motion-craft.md`, and `references/image2-asset-prompts.md` before creating Remotion scenes or generated asset prompts.
+Read `references/visual-system.md`, `references/motion-craft.md`, `references/tool-routing.md`, and `references/image2-asset-prompts.md` before creating Remotion scenes or generated asset prompts.
 
 ### 6. Plan and generate visual assets
 
@@ -109,7 +109,7 @@ When using the Ian Xiaohei illustration style, use it for conceptual static fram
 
 ### 7. Render
 
-Default renderer is Remotion. Use programmatic diagrams, cards, timelines, comparison panels, and caption lanes before stock B-roll. For quick HTML/GSAP experiments, HyperFrames-style composition is acceptable only when the user asks for faster prototype work.
+Default renderer is Remotion. Use programmatic diagrams, cards, timelines, comparison panels, and caption lanes before stock B-roll. Read `references/tool-routing.md` before selecting HyperFrames, GSAP, CapCut/JianYing automation, FFmpeg-only editing, Sora-style video generation, or image2 asset generation.
 
 Platform specs live in `references/platform-specs.md`.
 
@@ -157,6 +157,7 @@ videos/video-id/
 | `references/ai-explainer-patterns.md` | AI concept videos |
 | `references/visual-system.md` | Before storyboard and Remotion layout |
 | `references/motion-craft.md` | Before building Remotion animation, transitions, and frame-change density |
+| `references/tool-routing.md` | Before choosing Remotion, HyperFrames, GSAP, CapCut/JianYing, FFmpeg/Editly, Sora, or image2 roles |
 | `references/image2-asset-prompts.md` | Before creating image2 prompts, style frames, static frames, or generated visual components |
 | `references/pipeline-and-checkpoints.md` | Before iterative runs, rerenders, TTS, asset generation, or render caching |
 | `references/platform-specs.md` | Before selecting aspect ratio and safe areas |

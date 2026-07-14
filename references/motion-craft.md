@@ -7,6 +7,9 @@ Use motion to create visible reasoning progress, not decoration. A knowledge sho
 - Remotion remains the default renderer for Chinese explainers because React components keep text, UI, charts, captions, and timing editable.
 - Use Remotion template ideas such as character text reveal, SVG line draw, progress steps, counters, chart reveal, lower thirds, push/iris/clock wipes, subtle grain, and controlled transitions as component patterns.
 - Borrow product-demo craft from cinematic Remotion templates: scene-relative camera, geometry-aware cursor, prop-driven component layout, audio ducking, and UI states from JSON.
+- Borrow GSAP craft for timing ideas: labeled timelines, staggered entrances, path drawing, FLIP-style reordering, MorphSVG-like shape transitions, motion-path cursors, and premium easing. If the final renderer is Remotion, port the timing into frame ranges and `Easing.bezier()` instead of adding GSAP just for simple fades.
+- Borrow HyperFrames craft when the piece benefits from HTML-native composition, GSAP/Lottie/Three.js adapters, or quick title-card prototyping, but keep Chinese text-heavy final explainers in deterministic components unless the user explicitly chooses HyperFrames.
+- Use CapCut/JianYing automation for real footage, talking-head cleanup, subtitles, and editable draft handoff. Do not make it the primary engine for generated UI choreography.
 - Borrow agentic-video QA patterns from projects such as video-use, Kinocut, and OpenMontage: plan first, render receipts, ffprobe checks, representative frame extraction, and self-review before delivery.
 - Borrow storyboard discipline from AI-video storyboard tools: shared visual theme, shot purpose, camera or motion language, audio direction, and post-production checklist.
 
